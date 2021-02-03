@@ -1,0 +1,184 @@
+openapi: 3.0.3
+info:
+    title: Fortnox
+    description: Fortnox
+    version: 0.0.0
+servers:
+    -   url: "https://api.fortnox.se/3"
+paths:
+    "/customers":
+        get:
+            summary: List customers
+            operationId: listCustomers
+            parameters:
+                -   $ref: "#/components/parameters/financialyeardateParam"
+                -   $ref: "#/components/parameters/financialyearParam"
+                -   $ref: "#/components/parameters/fromdateParam"
+                -   $ref: "#/components/parameters/lastmodifiedParam"
+                -   $ref: "#/components/parameters/limitParam"
+                -   $ref: "#/components/parameters/offsetParam"
+                -   $ref: "#/components/parameters/pageParam"
+                -   $ref: "#/components/parameters/sortbyParam"
+                -   $ref: "#/components/parameters/sortorderParam"
+                -   $ref: "#/components/parameters/todateParam"
+                -   name: filter
+                    in: query
+                    description: Filters on active and inactive customers
+                    schema:
+                        type: string
+                        enum:
+                            - active
+                            - inactive
+
+            responses:
+                "200":
+                    description: A paged list of customers
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/CustomerList"
+
+    "/customers/{customerNumber}":
+        get:
+            summary: Get customer by customer number
+            operationId: getCustomerByCustomerNumber
+            parameters:
+                -   name: customerNumber
+                    in: path
+                    description: The customer number
+                    required: true
+                    schema:
+                        type: string
+            responses:
+                "200":
+                    description: A customer
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Customer"
+
+
+components:
+    schemas:
+        MetaInformation:
+            type: object
+            properties:
+                "@CurrentPage":
+                    type: integer
+                "@TotalResources":
+                    type: integer
+                "@TotalPages":
+                    type: integer
+
+        CustomerPartial:
+            description: A partial customer object (from customer list)
+            type: object
+            properties:
+                "@url":
+                    type: string
+                Name:
+                    type: string
+                Address:
+                    type: string
+
+        Customer:
+            description: A complete customer object
+            type: object
+            properties:
+                "@url":
+                    type: string
+                Name:
+                    type: string
+                Address:
+                    type: string
+
+        CustomerList:
+            type: object
+            properties:
+                MetaInformation:
+                    $ref: "#/components/schemas/MetaInformation"
+                Customers:
+                    type: array
+                    items:
+                        $ref: "#/components/schemas/CustomerPartial"
+
+    parameters:
+        lastmodifiedParam:
+            name: lastmodified
+            in: query
+            description: Retrieves all records since the provided timestamp.
+            schema:
+                type: string
+                example: 2019-03-10 12:30
+
+        financialyearParam:
+            name: financialyear
+            in: query
+            description: Selects what financial year that should be used
+            schema:
+                type: string
+                example: 5
+
+        financialyeardateParam:
+            name: financialyeardate
+            in: query
+            description: Selects by date, what financial year that should be used
+            schema:
+                type: string
+                example: 2014-03-10
+
+        fromdateParam:
+            name: fromdate
+            in: query
+            description: Defines a selection based on a start date. Only available for invoices, orders, offers and vouchers.
+            schema:
+                type: string
+                example: 2014-03-10
+
+        todateParam:
+            name: todate
+            in: query
+            description: Defines a selection based on an end date. Only available for invoices, orders, offers and vouchers
+            schema:
+                type: string
+                example: 2014-03-10
+
+        sortbyParam:
+            name: sortby
+            in: query
+            description: A result can be sorted, either ascending or descending, by specific fields. These fields are listed in the table under the section “Fields” in the documentation for each resource. This is made in the same way as the search and the filter, by adding GET parameters. Apart from the filters and the search, sorting uses two parameters. One named “sortby”, which specifies the field that the result should be sorted by and one named “sortorder”, which specifies the order in which the sorting should be made.
+            schema:
+                type: string
+                example: customernumber
+
+        sortorderParam:
+            name: sortorder
+            in: query
+            description: Sorting order
+            schema:
+                type: string
+                example: ascending
+
+        limitParam:
+            name: limit
+            in: query
+            description: Limit per page. Default 100, from 1 to 500 are valid options.
+            schema:
+                type: integer
+                example: 25
+
+        offsetParam:
+            name: offset
+            in: query
+            description: Offset
+            schema:
+                type: integer
+                example: 100
+
+        pageParam:
+            name: page
+            in: query
+            description: Page, with 1 beeing the first page
+            schema:
+                type: integer
+                example: 1
