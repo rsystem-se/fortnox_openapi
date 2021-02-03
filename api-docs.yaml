@@ -74,9 +74,9 @@ components:
             description: A partial customer object (from customer list)
             type: object
             properties:
-                @url:
-                     type: string
-                     example: https://api.fortnox.se/3/customers/1
+                "@url":
+                    type: string
+                    example: https://api.fortnox.se/3/customers/1
                 Address1:
                     type: string
                     example: c/o Someone else
@@ -109,8 +109,8 @@ components:
             description: A complete customer object
             type: object
             properties:
-                @url:
-                     type: string
+                "@url":
+                    type: string
                 Address1:
                     type: string
                 Address2:
