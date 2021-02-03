@@ -74,22 +74,212 @@ components:
             description: A partial customer object (from customer list)
             type: object
             properties:
-                "@url":
+                @url:
+                     type: string
+                     example: https://api.fortnox.se/3/customers/1
+                Address1:
                     type: string
+                    example: c/o Someone else
+                Address2:
+                    type: string
+                    example: Streetname 123
+                City:
+                    type: string
+                    example: Göteborg
+                CustomerNumber:
+                    type: string
+                    example: 1
+                Email:
+                    type: string
+                    example:
                 Name:
                     type: string
-                Address:
+                    example: ACME Corp
+                OrganisationNumber:
                     type: string
+                    format: nullable
+                Phone:
+                    type: string
+                    example:
+                ZipCode:
+                    type: string
+                    example: 411 11
 
         Customer:
             description: A complete customer object
             type: object
             properties:
-                "@url":
+                @url:
+                     type: string
+                Address1:
+                    type: string
+                Address2:
+                    type: string
+                City:
+                    type: string
+                Country:
+                    type: string
+                Comments:
+                    type: string
+                    format: nullable
+                Currency:
+                    type: string
+                CostCenter:
+                    type: string
+                    format: nullable
+                CountryCode:
+                    type: string
+                Active:
+                    type: boolean
+                CustomerNumber:
+                    type: string
+                DefaultDeliveryTypes:
+                    type: object
+                    properties:
+                        Invoice:
+                            type: string
+                        Order:
+                            type: string
+                        Offer:
+                            type: string
+                DefaultTemplates:
+                    type: object
+                    properties:
+                        Order:
+                            type: string
+                        Offer:
+                            type: string
+                        Invoice:
+                            type: string
+                        CashInvoice:
+                            type: string
+                DeliveryAddress1:
+                    type: string
+                    format: nullable
+                DeliveryAddress2:
+                    type: string
+                    format: nullable
+                DeliveryCity:
+                    type: string
+                    format: nullable
+                DeliveryCountry:
+                    type: string
+                    format: nullable
+                DeliveryCountryCode:
+                    type: string
+                    format: nullable
+                DeliveryFax:
+                    type: string
+                    format: nullable
+                DeliveryName:
+                    type: string
+                    format: nullable
+                DeliveryPhone1:
+                    type: string
+                    format: nullable
+                DeliveryPhone2:
+                    type: string
+                    format: nullable
+                DeliveryZipCode:
+                    type: string
+                    format: nullable
+                Email:
+                    type: string
+                EmailInvoice:
+                    type: string
+                EmailInvoiceBCC:
+                    type: string
+                EmailInvoiceCC:
+                    type: string
+                EmailOffer:
+                    type: string
+                EmailOfferBCC:
+                    type: string
+                EmailOfferCC:
+                    type: string
+                EmailOrder:
+                    type: string
+                EmailOrderBCC:
+                    type: string
+                EmailOrderCC:
+                    type: string
+                ExternalReference:
+                    type: string
+                    format: nullable
+                Fax:
+                    type: string
+                    format: nullable
+                GLN:
+                    type: string
+                    format: nullable
+                GLNDelivery:
+                    type: string
+                    format: nullable
+                InvoiceAdministrationFee:
+                    type: string
+                    format: nullable
+                InvoiceDiscount:
+                    type: string
+                    format: nullable
+                InvoiceFreight:
+                    type: string
+                    format: nullable
+                InvoiceRemark:
                     type: string
                 Name:
                     type: string
-                Address:
+                OrganisationNumber:
+                    type: string
+                    format: nullable
+                OurReference:
+                    type: string
+                Phone1:
+                    type: string
+                    format: nullable
+                Phone2:
+                    type: string
+                    format: nullable
+                PriceList:
+                    type: string
+                Project:
+                    type: string
+                SalesAccount:
+                    type: string
+                    format: nullable
+                ShowPriceVATIncluded:
+                    type: boolean
+                TermsOfDelivery:
+                    type: string
+                TermsOfPayment:
+                    type: string
+                Type:
+                    type: string
+                VATNumber:
+                    type: string
+                VATType:
+                    type: string
+                VisitingAddress:
+                    type: string
+                    format: nullable
+                VisitingCity:
+                    type: string
+                    format: nullable
+                VisitingCountry:
+                    type: string
+                    format: nullable
+                VisitingCountryCode:
+                    type: string
+                    format: nullable
+                VisitingZipCode:
+                    type: string
+                    format: nullable
+                WayOfDelivery:
+                    type: string
+                WWW:
+                    type: string
+                YourReference:
+                    type: string
+                ZipCode:
                     type: string
 
         CustomerList:
